@@ -1,0 +1,38 @@
+var fs = require('mz/fs');
+var showdown  = require('showdown');
+var koa = require('koa');
+var serve = require('koa-static');
+var path = require('path');
+
+var app = koa();
+var converter = new showdown.Converter();
+showdown.setFlavor('github');
+converter.setOption('tables', true);
+// app.use(serve(path.join(__dirname, '')));
+
+function *fileExist(path) {
+	var fstat = yield fs.stat(fpath);
+	yield* fstat.isFile();
+}
+
+app.use(function *(next) { // static file ; .md
+	var fpath = path.join(__dirname, this.path);
+	if (fpath.endsWith(".mdh")) {
+		fpath = fpath.replace(/\.mdh$/, ".md");
+		var fstat = yield fs.stat(fpath);
+		if (fstat.isFile()) {
+			this.type = "html";
+			var md = yield fs.readFile(fpath, "utf8");
+			this.body = converter.makeHtml(md);
+		}
+	} else {
+		var fstat = yield fs.stat(fpath);
+		if (fstat.isFile()) {
+			this.type = path.extname(fpath);
+			this.body = fs.createReadStream(fpath);
+		}		
+	}
+});
+
+if (!module.parent) app.listen(3000);
+console.log('listening on port 3000');
