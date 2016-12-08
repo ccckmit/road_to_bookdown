@@ -1,3 +1,8 @@
+body {
+    color: #777;
+		overflow-y:scroll;
+}
+
 textarea {
   width:100%;
   height:80vh; // 80vh : 80% view port hieght
@@ -6,17 +11,6 @@ textarea {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
-}
-
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-body {
-    color: #777;
-		overflow-y:scroll;
 }
 
 table, th, td, p { 
@@ -45,26 +39,6 @@ td  {
   vertical-align: middle;
   border: 1px solid #a0a0a0;
 }
-
-p {
-  font-family: 'Pmingliu', 'Tahoma';
-  margin: 15px 0px 15px 0px;
-  font-size:100%;
-  color:#353535;
-	line-height:180%;
-}
-
-h1, h1 a { font-size: xx-large; color:#050505; text-align:center; margin:30px; font-weight: bold; font-family: 'DFKai-sb', 'Tahoma'; }
-
-h2, h2 a { font-size: x-large; color:#8B008B; margin-top:30px; margin-bottom:30px; font-weight: bold; font-family: 'DFKai-sb', 'Tahoma'; }
-
-h3, h3 a { font-size: large; color:#000080; font-weight: bold; font-family: 'DFKai-sb', 'Tahoma'; }
-
-h4, h4 a { font-size: medium;  color:#4B0082; font-weight: bold; font-family: 'DFKai-sb', 'Tahoma'; }
-
-h5, h5 a { font-size: small ;  color:#708090; font-weight: bold; font-family: 'DFKai-sb', 'Tahoma'; }
-
-h6, h6 a { font-size: x-small; color:#﻿﻿000080; }
 
 /* from : http://purecss.io/layouts/side-menu/ */
 
@@ -198,7 +172,7 @@ appears on the left side of the page.
     */
     #menu .pure-menu-selected,
     #menu .pure-menu-heading {
-        background: #1f8dd6;
+        background: #2d3e50;
     }
         /*
         This styles a link within a selected menu item `<li>`.
@@ -316,18 +290,11 @@ Hides the menu at `48em`, but modify this based on your app's needs.
     }
 }
 
-
 /* from http://purecss.io/layouts/marketing/ */
 /*
  * -- MENU STYLES --
  * I want to customize how my .pure-menu looks at the top of the page
  */
-
-* {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
 /*
  * -- BASE STYLES --
@@ -416,7 +383,7 @@ a.pure-button-primary {
  */
 
 .home-menu {
-    padding: 0.5em;
+    padding: 0.1em;
     text-align: center;
     box-shadow: 0 1px 1px rgba(0,0,0, 0.10);
 }

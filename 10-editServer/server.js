@@ -1,11 +1,11 @@
-var fs = require('mz/fs');
-var showdown = require('showdown');
-var handlebars = require('handlebars');
-var koa = require('koa');
+var fs    = require('mz/fs');
+var koa   = require('koa');
 var serve = require('koa-static');
 var route = require('koa-route');
 var parse = require('co-body');
-var path = require('path');
+var path  = require('path');
+var showdown = require('showdown');
+var handlebars = require('handlebars');
 
 var converter = new showdown.Converter();
 converter.setOption('tables', true);
@@ -52,11 +52,10 @@ function response(res, code, msg) {
 
 function *save(book, file) { // save markdown file.
   var res = this.response;
+//	console.log("this=%j", this);
   var post = yield parse(this);
   console.log("save:%s/%s\npost=%j", book, file, post);
 	var filePath = getFilePath(book, file);
-//  console.log("save:filePath=", filePath);
-//	var md = yield fs.readFile(filePath, "utf8");	
   yield fs.writeFile(filePath, post).then(function() {
     response(res, 200, 'write success!');
   }).catch(function() {
