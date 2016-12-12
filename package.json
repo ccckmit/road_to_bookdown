@@ -4,12 +4,17 @@
   "description": "A course for web programming by the bookdown project.",
   "main": "08-bookdown001modulized/server.js",
   "dependencies": {
+    "co-body": "^4.2.0",
+    "css-modal": "^1.5.0",
     "handlebars": "^4.0.6",
     "koa": "^1.2.4",
     "koa-route": "^2.4.2",
+    "koa-session": "^3.4.0",
     "koa-static": "^2.0.0",
+    "mongodb": "^2.2.15",
     "mz": "^2.6.0",
-    "showdown": "^1.5.1"
+    "showdown": "^1.5.1",
+    "walk": "^2.3.9"
   },
   "devDependencies": {},
   "scripts": {},
