@@ -13,6 +13,7 @@
     "koa-static": "^2.0.0",
     "mongodb": "^2.2.15",
     "mz": "^2.6.0",
+    "object-hash": "^1.1.5",
     "showdown": "^1.5.1",
     "walk": "^2.3.9"
   },
