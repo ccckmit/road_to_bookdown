@@ -1,0 +1,71 @@
+<!-- 用 https://github.com/drublic/css-modal 做 login 畫面 -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A layout example with a side menu that hides on mobile, just like the Pure website.">
+    <title>Bookdown:View</title>
+<!--<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.0/build/pure-min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css"> -->
+    <link rel="stylesheet" href="/css/pure-min.css">
+		<link rel="stylesheet" href="/katex/katex.min.css">
+  <!--[if lte IE 8]>
+    <link rel="stylesheet" href="/main.css">
+  <![endif]-->
+  <!--[if gt IE 8]><!-->
+    <link rel="stylesheet" href="/main.css">
+  <!--<![endif]-->
+</head>
+<body onload='load("{{{book}}}", "{{{file}}}")'>
+<div class="header">
+	<div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+		<a class="pure-menu-heading" href="">HOME</a>
+		<ul class="pure-menu-list">
+			<li class="pure-menu-item"><a class="pure-menu-link" onclick="view()">View</a></li>
+			<li class="pure-menu-item"><a class="pure-menu-link" onclick="edit()">Edit</a></li>
+			<li class="pure-menu-item"><a class="pure-menu-link" onclick="save()">Save</a></li>
+			<li class="pure-menu-item"><a class="pure-menu-link" onclick="signup()">Signup</a></li>
+			<li class="pure-menu-item"><a href="/login.html" class="pure-menu-link">Login</a></li>
+			<li class="pure-menu-item"><a class="pure-menu-link" onclick="logout()">Logout</a></li>
+		</ul>
+	</div>
+</div>
+
+<div id="layout">
+	<!-- Menu toggle -->
+	<a href="#menu" id="menuLink" class="menu-link">
+		<!-- Hamburger icon -->
+		<span></span>
+	</a>
+
+	<div id="menu">
+		<div class="pure-menu">
+			<a class="pure-menu-heading" href="README.md">{{{title}}}</a>
+			<ul class="pure-menu-list">
+				{{#parts}}
+				<li class="pure-menu-item"><a href="{{{link}}}" class="pure-menu-link">{{{title}}}</a></li>
+				{{/parts}}
+			</ul>
+		</div>
+	</div>
+
+	<div id="main">
+		<div class="content" id="viewBox">
+			{{{html}}}
+		</div>
+		<div class="content" id="editBox">
+			<br/>
+			<textarea id="md" name="md">{{{md}}}</textarea>
+		</div>
+	</div>
+</div>
+<script src="/bookdown.js"></script>
+<script src="/js/ui.js"></script>
+<script src="/js/showdown.min.js"></script>
+<script src="/katex/katex.min.js"></script>
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.js"></script>-->
+</body>
+</html>
