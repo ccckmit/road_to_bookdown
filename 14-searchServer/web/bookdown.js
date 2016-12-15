@@ -120,7 +120,7 @@ function search(key) {
 		console.log("results = %j", results);
 		var lines = [];
     for (var i=0; i<results.length; i++) {
-			lines.push("<h3>"+results[i].path+"</h3>");
+			lines.push('<h3><a href="/view/'+results[i].path+'">'+results[i].path+'</a></h3>');
 			var obj = results[i].md || results[i].json;
 			var text = JSON.stringify(obj);
 			lines.push("<p>"+text.replace(/\n/gi, '')+"</p>");
