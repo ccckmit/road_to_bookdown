@@ -1,0 +1,5 @@
+[
+  {"book":"markdown","editor":"ccc",    "coeditor":["snoopy"]},
+  {"book":"history", "editor":"snoopy", "coeditor":["ccc"]},
+  {"book":"bajiu",   "editor":"ccc",    "coeditor":[]}
+]

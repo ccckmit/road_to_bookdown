@@ -1,0 +1,9 @@
+{
+  "title":"Bookdown",
+  "parts":[
+    {"title":"簡介", "link":"README.md"},
+    {"title":"註冊", "link":"signup.md"},
+    {"title":"寫書", "link":"createBook.md"}
+  ]
+}
+
