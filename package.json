@@ -1,6 +1,6 @@
 {
   "name": "road_to_bookdown",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A course for web programming by the bookdown project.",
   "main": "08-bookdown001modulized/server.js",
   "dependencies": {
