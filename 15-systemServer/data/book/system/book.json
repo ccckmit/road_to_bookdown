@@ -1,8 +1,9 @@
 {
-  "title":"陳鍾誠",
+  "title":"system",
   "parts":[
-    {"title":"關於陳鍾誠", "link":"README.md"},
-    {"title":"著作清單",   "link":"booklist.md"}
+    {"title":"README",   "link":"README.md"},
+    {"title":"booklist", "link":"booklist.md"},
+    {"title":"userlist", "link":"userlist.md"}
   ]
 }
 

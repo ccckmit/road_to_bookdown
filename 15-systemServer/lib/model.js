@@ -30,7 +30,7 @@ M.getBook = function*(book) {
   var bookJsonPath = path.join(M.getBookPath(book), "book.json");
   var bookObj = yield File.readJson(bookJsonPath);
 //  console.log("book=%s bookJsonPath=%s", bookJsonPath);
-  bookObj.id = book;
+  bookObj.book = book;
   return bookObj;
 }
 
@@ -38,17 +38,20 @@ M.getBookFile = function*(book, file) {
   var filePath = M.getFilePath(book, file);
   var hasFile = yield File.fileExists(filePath);
   if (hasFile) {
-    fileObj = { id:file };
-    fileObj.md = yield File.readFile(filePath);
+    fileObj = { book:book, file:file };
+    fileObj.text = yield File.readFile(filePath);
     return fileObj;
   }
 }
 
-M.saveBookFile = function*(book, file, md) {
-  console.log("save:%s/%s\npost=%j", book, file, md);
+M.saveBookFile = function*(book, file, text) {
+  console.log("save:%s/%s\npost=%j", book, file, text);
   var filePath = M.getFilePath(book, file);
-  yield File.writeFile(filePath, md);
-  yield mongo.saveMd(M.docTable, md, filePath);
+  yield File.writeFile(filePath, text);
+	if (file.endsWith(".md"))
+		yield mongo.saveMd(M.docTable, text, filePath);
+	else
+		yield mongo.saveJson(M.docTable, JSON.parse(text), filePath);
 }
 
 M.search = function*(keywords, q={}) {

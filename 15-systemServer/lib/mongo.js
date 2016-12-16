@@ -43,7 +43,7 @@ M.saveMd = function*(docTable, md, filePath) {
   }
 }
 
-M.saveJson = function*(docTable, json, filePath, part, row) {
+M.saveJson = function*(docTable, json, filePath, part=0, row=0) {
   var obj  = {json:json, path:filePath, type:"json", part:part, row:row};
 //  var m = JSON.stringify(json).match(/(\-?\d+)[^\.]/);
 //  if (m) json.integer = parseInt(m[1]);

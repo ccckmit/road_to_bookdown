@@ -21,13 +21,21 @@ V.newTemplate= function(file) {
 }
 
 V.mdToHtml = function(md) {
-  var mdFormal = MD.parse(md).formal;
-	console.log("mdFormal=%s", mdFormal);
-  return converter.makeHtml(mdFormal);
+	if (md.trim().startsWith("<")) { // html
+		return md.trim();
+	} else {
+		var mdFormal = MD.parse(md).formal;
+		console.log("mdFormal=%s", mdFormal);
+		return converter.makeHtml(mdFormal);
+	}
 }
 
 V.viewRender=function(bookObj, fileObj) {
-  fileObj.html = V.mdToHtml(fileObj.md);
+	if (fileObj.file.endsWith(".md"))
+		fileObj.html = V.mdToHtml(fileObj.text);
+	else if (fileObj.file.endsWith(".json"))
+		fileObj.html = '<pre>'+fileObj.text+'</pre>';
+		
 //  console.log("bookObj=", bookObj);
 //  console.log("fileObj=", fileObj);
   return V.render.view({book:bookObj, file:fileObj});

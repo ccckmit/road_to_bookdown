@@ -1,4 +1,4 @@
-var searchQuery, viewBox, editBox, mdBox;
+var searchQuery, viewBox, editBox, textBox, searchBox;
 var formEdit, converter, book, file, searchTemplate;
 var katexLoaded = false;
 
@@ -9,7 +9,7 @@ function load(pBook, pFile) {
   searchBox = document.getElementById("searchBox");
   viewBox = document.getElementById("viewBox");
   editBox = document.getElementById("editBox");
-  mdBox   = document.getElementById("md");
+  textBox = document.getElementById("editText");
   formEdit= document.getElementById("formEdit");
 	
   window.onhashchange();
@@ -22,6 +22,7 @@ function load(pBook, pFile) {
 		if (event.keyCode == 13) {
 			var key = searchQuery.value;
 			window.location.hash = '#'+key;
+			showBox(searchBox);
 		}
 	});
 }
@@ -81,11 +82,14 @@ function ajaxPost(path, obj) {
 }
 
 function markdownRender(md) {
-  return converter.makeHtml(md);
+	if (md.trim().startsWith("<")) // html
+		return md;
+	else
+		return converter.makeHtml(md);
 }
 
 function render() {
-  var html = markdownRender(mdBox.value);
+  var html = markdownRender(textBox.value);
   viewBox.innerHTML = texRender(html);
 }
 
@@ -99,7 +103,7 @@ function edit() {
 }
 
 function save() {
-  ajaxPost('/save/'+book+'/'+file, {md:mdBox.value});
+  ajaxPost('/save/'+book+'/'+file, {text:textBox.value});
 }
 
 function search(key) {

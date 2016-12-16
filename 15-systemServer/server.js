@@ -27,15 +27,17 @@ var parse = function *(self) {
 	return JSON.parse(json);
 }
 
-var view = function *(book, file) { // view(mdFile):convert *.md to html
+var view = function *(book, file="README.md") { // view(mdFile):convert *.md to html
   console.log("view:book=%s file=%s", book, file);
-  if (file.endsWith(".md")) {
-    var bookObj = yield M.getBook(book);
-    var fileObj = yield M.getBookFile(book, file);
-		if (typeof fileObj !== 'undefined') {
-			var page = V.viewRender(bookObj, fileObj);
-			this.body = page;
+  if (file.endsWith(".md") || file.endsWith(".json")) {
+    var fileObj, bookObj = yield M.getBook(book);
+		try {
+			fileObj = yield M.getBookFile(book, file);
+		} catch (error) {
+			fileObj = { book:book, file:file, text:"File not found.\nYou may edit and save to create a new file !" };
 		}
+		var page = V.viewRender(bookObj, fileObj);
+		this.body = page;
 	} else {
 		this.type = path.extname(this.path);
 		this.body = fs.createReadStream(M.getFilePath(book, file));
@@ -48,8 +50,8 @@ var save = function *(book, file) { // save markdown file.
   } else {
 		try {
 			var post = yield parse(this);
-			console.log("save:%s/%s\npost=%j", book, file, post.md);
-			yield M.saveBookFile(book, file, post.md);
+			console.log("save:%s/%s\npost=%j", book, file, post.text);
+			yield M.saveBookFile(book, file, post.text);
 			response(this, 200, 'Save Success!');
 		} catch (e) {
 			response(this, 403, 'Save Fail!'); // 403: Forbidden			
@@ -101,7 +103,7 @@ app.use(serve('user'));
 
 app.use(route.get('/', function*() { this.redirect('/view/home/README.md') }));
 app.use(route.get('/search', search));
-app.use(route.get('/view/:book/:file', view));
+app.use(route.get('/view/:book/:file?', view));
 app.use(route.post('/save/:book/:file', save));
 app.use(route.post('/login', login));
 app.use(route.post('/logout', logout));

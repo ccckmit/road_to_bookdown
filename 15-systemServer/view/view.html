@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="/katex/katex.min.css"> <!--https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.6.0/katex.min.css-->
     <link rel="stylesheet" href="/main.css">
 </head>
-<body onload='load("{{{book.id}}}", "{{{file.id}}}")'>
+<body onload='load("{{{book.book}}}", "{{{file.file}}}")'>
 
 <script src="/bookdown.js"></script>
 
@@ -42,7 +42,7 @@
     </div>
     <div class="content" id="editBox">
       <br/>
-      <textarea id="md" name="md">{{{file.md}}}</textarea>
+      <textarea id="editText" name="editText">{{{file.text}}}</textarea>
     </div>
     <div class="content" id="searchBox">
     </div>
