@@ -1,0 +1,7 @@
+{
+  "title":"My First Book",
+  "parts":[
+    {"title":"Chapter 1", "link":"chapter1.md"}
+  ]
+}
+

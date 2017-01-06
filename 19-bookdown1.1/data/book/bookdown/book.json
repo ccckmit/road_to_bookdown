@@ -1,0 +1,7 @@
+{"title":"Bookdown", 
+ "parts":[
+  {"title":"README", "link":"README.md"},
+  {"title":"Markdown", "link":"markdown.md"},
+  {"title":"Table", "link":"table.md"},
+  {"title":"Math Formula", "link":"tex.md"}
+]}

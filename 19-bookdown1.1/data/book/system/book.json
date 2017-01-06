@@ -1,0 +1,10 @@
+{
+  "title":"Bookdown",
+  "parts":[
+    {"title":"Login", "link":"login.md"},
+    {"title":"Create Book", "link":"createBook.md"},
+    {"title":"Logout", "link":"logout.md"},
+    {"title":"Books", "link":"booklist.md"},
+    {"title":"Authors", "link":"userlist.md"}
+  ]
+}
