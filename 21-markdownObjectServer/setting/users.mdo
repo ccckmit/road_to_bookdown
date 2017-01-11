@@ -1,0 +1,6 @@
+users:
+user   | password
+-------|---------
+root   | 1234
+ccc    | abcd
+

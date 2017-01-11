@@ -1,0 +1,8 @@
+{
+  "port":80,
+  "portSsl":443,
+  "home":"/view/system/README.md",
+  "users":{
+	  "root":{ "password":"1234" }
+	}
+}

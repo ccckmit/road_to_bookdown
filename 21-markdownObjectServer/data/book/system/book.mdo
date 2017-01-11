@@ -1,0 +1,12 @@
+title:Bookdown
+editor:root
+chapters:
+title        | link
+-------------|---------
+Bookdown     | README.md
+Login        | login.html
+Create Book  | createBook.html
+Logout       | logout.html
+Books        | booklist.md
+Authors      | userlist.md
+

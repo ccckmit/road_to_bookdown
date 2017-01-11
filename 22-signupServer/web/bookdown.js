@@ -67,7 +67,8 @@ function ajaxGet(path, getResponse) {
   r.open("GET", path, true);
   r.onreadystatechange = function () {
 		if (r.readyState != 4) return;
-		getResponse(r.status, JSON.parse(r.responseText));
+//		getResponse(r.status, JSON.parse(r.responseText));
+		getResponse(r.status, r.responseText);
   };
 	r.send(null);
 }
@@ -86,6 +87,20 @@ function ajaxPost(path, obj) {
   r.send(JSON.stringify(obj));
 }
 
+function fileRender(text) {
+  if (file.endsWith(".html"))
+    return text;
+  else {
+    var md = text;
+    if (file.endsWith(".json"))
+      md = '```json\n'+text+'\n```';
+    else if (file.endsWith(".mdo"))
+      md = '```mdo\n'+text+'\n```';
+    return converter.makeHtml(md);
+  }
+}
+
+/*
 function markdownRender(md) {
   md = md.trim();
 	if (md.startsWith("<")) // html
@@ -96,10 +111,10 @@ function markdownRender(md) {
 		return converter.makeHtml(md);    
   }
 }
-
+*/
 function render() {
   var html = texRender(textBox.value);
-  viewBox.innerHTML = markdownRender(html);
+  viewBox.innerHTML = fileRender(html);
   
 /*  
   var html = markdownRender(textBox.value);
@@ -121,7 +136,8 @@ function save() {
 }
 
 function search(key) {
-  ajaxGet('/search?key='+key+'', function(status, obj) {
+  ajaxGet('/search?key='+key+'', function(status, msg) {
+    var obj = JSON.parse(msg);
 		var results = obj;
 		var lines = [];
     for (var i=0; i<results.length; i++) {
